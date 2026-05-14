@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CVM University — Where 80 Years of Legacy Meets Tomorrow's Leaders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f4;
+    --surface: #ffffff;
+    --ink: #0d2340;
+    --ink-soft: #1f3a5a;
+    --muted: #8a8578;
+    --muted-soft: #c9c3b3;
+    --line: #ebe5d8;
+    --accent: #b08945;
+    --accent-soft: #d4b87a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  ::selection { background: var(--ink); color: var(--bg); }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 250, 250, 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brand span { color: var(--muted); }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--bg) !important;
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: opacity 0.2s ease;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    padding: 140px 0 120px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-size: clamp(44px, 7vw, 88px);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    margin-bottom: 32px;
+    max-width: 14ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+  }
+  .hero p.lead {
+    font-size: clamp(17px, 1.6vw, 20px);
+    color: var(--ink-soft);
+    max-width: 58ch;
+    line-height: 1.55;
+    margin-bottom: 48px;
+    font-weight: 400;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .btn-primary:hover {
+    background: #000;
+    transform: translateY(-1px);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn-ghost:hover {
+    border-color: var(--ink);
+  }
+  .btn .arrow {
+    transition: transform 0.2s ease;
+  }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* TRUST STRIP */
+  .trust {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 48px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .trust span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .trust span::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* SECTION TEMPLATE */
+  section {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    margin-bottom: 80px;
+  }
+  .section-head .label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    align-self: start;
+  }
+  .section-head .label::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .section-head h2 {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    max-width: 18ch;
+  }
+  .section-head h2 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  /* HISTORY */
+  .history-body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+  }
+  .history-body .placeholder { /* keeps grid alignment */ }
+  .history-body p {
+    font-size: clamp(18px, 1.5vw, 22px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin-bottom: 1.5em;
+    font-weight: 400;
+  }
+  .history-body p:last-child { margin-bottom: 0; }
+  .history-body p strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .stats-grid > div {
+    padding: 48px 32px 48px 0;
+    border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+  .stats-grid > div:nth-child(3n) {
+    border-right: none;
+    padding-right: 0;
+  }
+  .stats-grid > div:not(:nth-child(3n)) {
+    padding-left: 0;
+  }
+  .stats-grid > div:nth-child(3n+1) {
+    padding-left: 0;
+  }
+  .stats-grid > div:nth-child(3n+2) {
+    padding-left: 32px;
+  }
+  .stats-grid > div:nth-child(3n) {
+    padding-left: 32px;
+  }
+  .stat-num {
+    font-size: clamp(40px, 4.5vw, 64px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 14px;
+    font-feature-settings: 'tnum';
+  }
+  .stat-label {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 28ch;
+  }
+  .stats-group-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 64px 0 32px;
+  }
+  .stats-group-title:first-child { margin-top: 0; }
+
+  /* TESTIMONIALS */
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .quote {
+    padding: 36px 32px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .quote:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px -18px rgba(13, 35, 64, 0.18);
+  }
+  .quote-mark {
+    font-size: 48px;
+    line-height: 0.7;
+    color: var(--accent);
+    margin-bottom: 22px;
+    font-weight: 700;
+    font-family: 'Inter', serif;
+  }
+  .quote p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    flex: 1;
+  }
+  .quote-meta {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
+  .quote-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .quote-role {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .alumni-intro {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    max-width: 60ch;
+  }
+  .alumni-intro strong { color: var(--ink); font-weight: 500; }
+
+  /* PATHS */
+  .paths {
+    display: grid;
+    gap: 0;
+  }
+  .path {
+    display: grid;
+    grid-template-columns: 80px 1fr 2fr auto;
+    gap: 48px;
+    align-items: center;
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+    text-decoration: none;
+    color: inherit;
+    transition: padding 0.25s ease;
+  }
+  .path:hover { padding-left: 12px; }
+  .path:last-child { border-bottom: 1px solid var(--line); }
+  .path-num {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.08em;
+  }
+  .path-title {
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .path-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.55;
+    max-width: 52ch;
+  }
+  .path-arrow {
+    font-size: 20px;
+    color: var(--muted);
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+  .path:hover .path-arrow {
+    transform: translateX(6px);
+    color: var(--ink);
+  }
+  .paths-cta {
+    margin-top: 48px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* NEWS */
+  .news-list {
+    display: grid;
+    gap: 0;
+  }
+  .news-item {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 32px;
+    align-items: baseline;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+  .news-item:last-child { border-bottom: 1px solid var(--line); }
+  .news-date {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+  .news-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+  .news-desc {
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .news-link {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .news-link:hover { color: var(--ink); }
+  .news-cta {
+    margin-top: 48px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* QUOTE SECTION */
+  .founding {
+    padding: 160px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .founding blockquote {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 24ch;
+    margin: 0 auto 40px;
+    font-style: italic;
+    position: relative;
+  }
+  .founding blockquote::before {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin: 0 auto 36px;
+  }
+  .founding cite {
+    font-style: normal;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 80px;
+  }
+  .founding .closer {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* FINAL CTA */
+  .final {
+    padding: 140px 0 160px;
+    border-bottom: 1px solid var(--line);
+  }
+  .final h2 {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    margin-bottom: 48px;
+    max-width: 12ch;
+  }
+  .final h2 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .final .body {
+    font-size: clamp(17px, 1.5vw, 19px);
+    color: var(--ink-soft);
+    max-width: 50ch;
+    line-height: 1.6;
+    margin-bottom: 56px;
+  }
+  .final-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+  .secondary-row {
+    border-top: 1px solid var(--line);
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .secondary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .secondary-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .secondary-value {
+    font-size: 16px;
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .secondary-value:hover { color: var(--accent); }
+  .deadline-banner {
+    margin-top: 80px;
+    padding: 24px 32px;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .deadline-banner .text {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .deadline-banner .pulse {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-soft);
+    border-radius: 50%;
+    margin-right: 10px;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 0 0 var(--accent-soft);
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 64px 0 48px;
+  }
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .footer-brand {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: -0.01em;
+  }
+  .footer-brand strong { color: var(--ink); font-weight: 600; }
+  .footer-meta {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 24px; }
+    .hero { padding: 100px 0 80px; }
+    section { padding: 80px 0; }
+    .founding { padding: 100px 0; }
+    .final { padding: 100px 0 120px; }
+
+    .section-head,
+    .history-body {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .section-head .label { padding-top: 0; }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid > div,
+    .stats-grid > div:nth-child(3n),
+    .stats-grid > div:nth-child(3n+1),
+    .stats-grid > div:nth-child(3n+2) {
+      border-right: none;
+      padding: 32px 0;
+    }
+    .stats-grid > div:nth-child(odd) {
+      border-right: 1px solid var(--line);
+      padding-right: 24px;
+    }
+    .stats-grid > div:nth-child(even) {
+      padding-left: 24px;
+    }
+
+    .quotes { grid-template-columns: 1fr; }
+
+    .path {
+      grid-template-columns: 50px 1fr auto;
+      gap: 16px;
+      padding: 28px 0;
+    }
+    .path-desc {
+      grid-column: 1 / -1;
+      margin-left: 66px;
+      margin-top: -8px;
+    }
+
+    .news-item {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .news-link { justify-self: start; margin-top: 4px; }
+
+    .secondary-row { grid-template-columns: 1fr; }
+    .nav-links a:not(.nav-cta) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="brand">cvm<span>.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#alumni">Alumni</a>
+      <a href="#news">News</a>
+      <a href="#apply" class="nav-cta">Apply →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">CVM University · Est. 1945</div>
+    <h1>Where 80 years of legacy meets <em>tomorrow's leaders.</em></h1>
+    <p class="lead">Join 22,000+ students at Gujarat's first university — built on Sardar Patel's vision, trusted by 1,000+ recruiting companies, and home to 157 student-launched startups in the last 3 years alone.</p>
+    <div class="cta-row">
+      <a href="#apply" class="btn btn-primary">Start your application <span class="arrow">→</span></a>
+      <a href="#" class="btn btn-ghost">Download brochure</a>
+      <a href="#" class="btn btn-ghost">Talk to admissions</a>
+    </div>
+
+    <div class="trust">
+      <span>GSIRF-Rated</span>
+      <span>Est. 1945</span>
+      <span>22 Colleges</span>
+      <span>10 Lakh+ Alumni Worldwide</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">01 — History</div>
+      <h2>Built on a vision. <em>Proven across generations.</em></h2>
+    </div>
+    <div class="history-body">
+      <div class="placeholder"></div>
+      <div>
+        <p>In 1945, <strong>Sardar Vallabhbhai Patel</strong> imagined an institution where students wouldn't just earn degrees — they'd lead industries, build companies, and shape society.</p>
+        <p>Eight decades later, CVM University is the proof. <strong>22 colleges. 2,500+ faculty. 22,000+ students.</strong> And a national reputation GSIRF has officially recognized.</p>
+        <p>What started as one man's vision is now your launchpad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="numbers">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">02 — At a glance</div>
+      <h2>The numbers behind <em>your decision.</em></h2>
+    </div>
+
+    <div class="stats-group-title">Your learning environment</div>
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">620<span style="font-size:0.5em;color:var(--muted);font-weight:400;">ac</span></div>
+        <div class="stat-label">Campus acres — space to think, build, and breathe</div>
+      </div>
+      <div>
+        <div class="stat-num">100<span style="font-size:0.6em;color:var(--muted);font-weight:400;">+</span></div>
+        <div class="stat-label">Labs across 51+ buildings — hands-on, not just lectures</div>
+      </div>
+      <div>
+        <div class="stat-num">150<span style="font-size:0.6em;color:var(--muted);font-weight:400;">+</span></div>
+        <div class="stat-label">Programs across 8 faculties and 22 colleges</div>
+      </div>
+    </div>
+
+    <div class="stats-group-title">Your future network</div>
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">22,000<span style="font-size:0.6em;color:var(--muted);font-weight:400;">+</span></div>
+        <div class="stat-label">Students learning alongside you right now</div>
+      </div>
+      <div>
+        <div class="stat-num">10L<span style="font-size:0.6em;color:var(--muted);font-weight:400;">+</span></div>
+        <div class="stat-label">Alumni across 40+ countries worldwide</div>
+      </div>
+      <div>
+        <div class="stat-num">1,000<span style="font-size:0.6em;color:var(--muted);font-weight:400;">+</span></div>
+        <div class="stat-label">Companies actively recruiting CVM graduates</div>
+      </div>
+    </div>
+
+    <div class="stats-group-title">Your opportunity to build</div>
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">157</div>
+        <div class="stat-label">Startups launched from this campus in the last 3 years</div>
+      </div>
+      <div>
+        <div class="stat-num">5L<span style="font-size:0.6em;color:var(--muted);font-weight:400;">+</span></div>
+        <div class="stat-label">Learning resources available 24/7</div>
+      </div>
+      <div>
+        <div class="stat-num">2,500<span style="font-size:0.6em;color:var(--muted);font-weight:400;">+</span></div>
+        <div class="stat-label">Faculty members — mentors who've taught generations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="alumni">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">03 — Alumni voices</div>
+      <h2>Don't take our word for it. <em>Hear from the people who've walked this path.</em></h2>
+    </div>
+    <p class="alumni-intro">Our alumni lead at <strong>Qualcomm</strong>, <strong>Frankfurt RheinMain</strong>, <strong>Urbacon Ltd.</strong>, and 1,000+ companies across 40+ countries.</p>
+
+    <div class="quotes">
+      <div class="quote">
+        <div class="quote-mark">"</div>
+        <p>I'm deeply thankful to the E&amp;C Department for equipping me with the right knowledge and skills. GCET offers an ideal mix of quality education and real-world readiness.</p>
+        <div class="quote-meta">
+          <div class="quote-name">Disha Shah</div>
+          <div class="quote-role">Director India, Frankfurt RheinMain GmbH · 2002 EC Batch</div>
+        </div>
+      </div>
+      <div class="quote">
+        <div class="quote-mark">"</div>
+        <p>Hard work and patience are key to success, and ADIT provided the guidance I needed. The Civil Engineering Department's mentorship, labs, and site visits prepared me for global work.</p>
+        <div class="quote-meta">
+          <div class="quote-name">Pankti Bhatt</div>
+          <div class="quote-role">Project Coordinator, Urbacon Ltd., Toronto · 2015 CE Batch</div>
+        </div>
+      </div>
+      <div class="quote">
+        <div class="quote-mark">"</div>
+        <p>Choosing ADIT was the best decision for my career. The supportive faculty, engaging events, and learning environment helped me grow technically and personally.</p>
+        <div class="quote-meta">
+          <div class="quote-name">Palak Thakur</div>
+          <div class="quote-role">Qualcomm, Hyderabad · 2012 CP Batch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="programs">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">04 — Find your path</div>
+      <h2>Find your path. <em>We have 22 of them.</em></h2>
+    </div>
+
+    <div class="paths">
+      <a href="#" class="path">
+        <div class="path-num">01</div>
+        <div class="path-title">Heal &amp; Care</div>
+        <div class="path-desc">Faculty of Ayurvedic Medicine — for students drawn to traditional sciences, holistic healthcare, and human wellness.</div>
+        <div class="path-arrow">→</div>
+      </a>
+      <a href="#" class="path">
+        <div class="path-num">02</div>
+        <div class="path-title">Build Businesses</div>
+        <div class="path-desc">Faculty of Commerce, Management &amp; Law — for future entrepreneurs, financial leaders, and legal minds shaping tomorrow's economy.</div>
+        <div class="path-arrow">→</div>
+      </a>
+      <a href="#" class="path">
+        <div class="path-num">03</div>
+        <div class="path-title">Shape Minds</div>
+        <div class="path-desc">Faculty of Education — for those who'll teach, mentor, and prepare the next generation of leaders.</div>
+        <div class="path-arrow">→</div>
+      </a>
+    </div>
+
+    <div class="paths-cta">
+      <a href="#" class="btn btn-ghost">Explore all 22 faculties <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="news">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">05 — Latest news</div>
+      <h2>What's happening at CVM <em>right now.</em></h2>
+    </div>
+
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">2026 · Alumni</div>
+        <div class="news-title">Alumni Meet 2026 — Vadodara Chapter <span class="news-desc">over 200 alumni reconnected at Royal Orchid.</span></div>
+        <a href="#" class="news-link">Read →</a>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2026 · Campus</div>
+        <div class="news-title">Skill Development Boot Camp 2026 <span class="news-desc">500+ students upskilled at A. D. Patel Institute.</span></div>
+        <a href="#" class="news-link">Read →</a>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2026 · Events</div>
+        <div class="news-title">SSFL National Camp 2026 <span class="news-desc">CVM hosts a landmark event for Indian grassroots sports.</span></div>
+        <a href="#" class="news-link">Read →</a>
+      </div>
+    </div>
+
+    <div class="news-cta">
+      <a href="#" class="btn btn-ghost">See all news &amp; events <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="founding">
+  <div class="wrap">
+    <blockquote>"There is something unique in this soil, which despite many obstacles has always remained the abode of great souls."</blockquote>
+    <cite>— Sardar Vallabhbhai Patel</cite>
+    <div class="closer">This is the soil we're built on.</div>
+  </div>
+</section>
+
+<section id="apply" class="final">
+  <div class="wrap">
+    <h2>Your legacy <em>starts here.</em></h2>
+    <p class="body">You've seen the numbers. You've heard from the alumni. You know the history. Now choose which version of your future you want to build — and join the 22,000+ students already on their way.</p>
+
+    <div class="final-actions">
+      <a href="#" class="btn btn-primary">Apply now <span class="arrow">→</span></a>
+      <a href="#" class="btn btn-ghost">Download prospectus</a>
+    </div>
+
+    <div class="secondary-row">
+      <div class="secondary-item">
+        <div class="secondary-label">Call admissions</div>
+        <a href="tel:+916358819009" class="secondary-value">+91 6358 819 009</a>
+      </div>
+      <div class="secondary-item">
+        <div class="secondary-label">Visit campus</div>
+        <a href="#" class="secondary-value">Book a campus visit →</a>
+      </div>
+      <div class="secondary-item">
+        <div class="secondary-label">Counselor chat</div>
+        <a href="#" class="secondary-value">Talk to a counselor →</a>
+      </div>
+    </div>
+
+    <div class="deadline-banner">
+      <div class="text"><span class="pulse"></span>Admissions for 2026–27 closing soon. Don't miss your seat.</div>
+      <a href="#" class="btn" style="background:#fff;color:#000;padding:10px 18px;font-size:13px;">Apply →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand"><strong>CVM University</strong> · Vallabh Vidyanagar, Gujarat · Est. 1945</div>
+      <div class="footer-meta">© 2026 Charutar Vidya Mandal · All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
